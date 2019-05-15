@@ -1,31 +1,32 @@
-ls =    {'A': '.-', 'B': '-...',
-        'C': '-.-.', 'D': '-..', 'E': '.',
-        'F': '..-.', 'G': '--.', 'H': '....',
-        'I': '..', 'J': '.---', 'K': '-.-',
-        'L': '.-..', 'M': '--', 'N': '-.',
-        'O': '---', 'P': '.--.', 'Q': '--.-',
-        'R': '.-.', 'S': '...', 'T': '-',
-        'U': '..-', 'V': '...-', 'W': '.--',
-        'X': '-..-', 'Y': '-.--', 'Z': '--..',
-        '1': '.----', '2': '..---', '3': '...--',
-        '4': '....-', '5': '.....', '6': '-....',
-        '7': '--...', '8': '---..', '9': '----.',
-        '0': '-----', ', ': '--..--', '.': '.-.-.-',
-        '?': '..--..', '/': '-..-.', '-': '-....-',
-        '(': '-.--.', ')': '-.--.-'}
+MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
+                       'C': '-.-.', 'D': '-..', 'E': '.',
+                       'F': '..-.', 'G': '--.', 'H': '....',
+                       'I': '..', 'J': '.---', 'K': '-.-',
+                       'L': '.-..', 'M': '--', 'N': '-.',
+                       'O': '---', 'P': '.--.', 'Q': '--.-',
+                       'R': '.-.', 'S': '...', 'T': '-',
+                       'U': '..-', 'V': '...-', 'W': '.--',
+                       'X': '-..-', 'Y': '-.--', 'Z': '--..',
+                       '1': '.----', '2': '..---', '3': '...--',
+                       '4': '....-', '5': '.....', '6': '-....',
+                       '7': '--...', '8': '---..', '9': '----.',
+                       '0': '-----', ', ': '--..--', '.': '.-.-.-',
+                       '?': '..--..', '/': '-..-.', '-': '-....-',
+                       '(': '-.--.', ')': '-.--.-'}
 
 
-def encrypt(message): #text to morse
+def encrypt(message): #msg to morse
     inmorse = ''
     for i in message:
         if i != ' ':
-            inmorse += ls[i] + ' '
+            inmorse += MORSE_CODE_DICT[i] + ' '
         else:
             inmorse += '\t'
 
     return inmorse
 
-def decrypt(message): #morse to text
+def decrypt(message): #morse to msg
+    # message += ' '
 
     regular = ''
     citext = ''
@@ -38,12 +39,10 @@ def decrypt(message): #morse to text
             if space_in_between == 2:
                 regular += ' '
             else:
-                regular += list(ls.keys())[list(ls.values()).index(citext)]
+                regular += list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT.values()).index(citext)]
                 citext = ''
 
     return regular
-
-#MAIN
 
 message = input("Message: ") # <>={} []
 for i in message.upper():
@@ -53,4 +52,5 @@ for i in message.upper():
         break
     else:
         result_in_regular = decrypt(message)
+        print("Original Message in Regular:", result_in_regular)
         break
