@@ -2,6 +2,7 @@ import numpy as np
 list=[]
 list1 = []
 m = np.random.randint(0,10,(5,5))
+#soronként
 for i in range(0, m.shape[0]):
     max1 = 0
     for j in range(0, m.shape[1]):
@@ -9,6 +10,8 @@ for i in range(0, m.shape[0]):
             max1=m[i,j]
     list1.append(max1)
 list2 = []
+
+#oszlopokként
 for i in range(0, m.shape[1]):
     max2 = 0
     for j in range(0, m.shape[0]):
@@ -22,8 +25,8 @@ for i in range(0,5):
         list.append(list1[i])
     else:
         list.append(list2[i])
-print(list1)
-print(list2)
+
+
 print(list)
-print(sum(list))
+print("összegük:",sum(list))
 

@@ -1,5 +1,4 @@
-MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
-                       'C': '-.-.', 'D': '-..', 'E': '.',
+ls = {'A': '.-', 'B': '-...','C': '-.-.', 'D': '-..', 'E': '.',
                        'F': '..-.', 'G': '--.', 'H': '....',
                        'I': '..', 'J': '.---', 'K': '-.-',
                        'L': '.-..', 'M': '--', 'N': '-.',
@@ -14,43 +13,38 @@ MORSE_CODE_DICT = {'A': '.-', 'B': '-...',
                        '?': '..--..', '/': '-..-.', '-': '-....-',
                        '(': '-.--.', ')': '-.--.-'}
 
-
-def encrypt(message): #msg to morse
+def encrypt(x): #szöveget morse kóddá alakítás
     inmorse = ''
-    for i in message:
+    for i in x:
         if i != ' ':
-            inmorse += MORSE_CODE_DICT[i] + ' '
+            inmorse += ls[i] + ' '
         else:
             inmorse += '\t'
-
     return inmorse
 
-def decrypt(message): #morse to msg
-    # message += ' '
-
+def decrypt(x): #morse kód szöveggé
     regular = ''
-    citext = ''
-    for j in message.replace('\t', ' '): # j = letter
+    text = ''
+    for j in x.replace('\t', ' '): #j = betű
         if (j != ' '):
             space_in_between = 0
-            citext += j
+            text += j
         else:
             space_in_between += 1
             if space_in_between == 2:
                 regular += ' '
             else:
-                regular += list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT.values()).index(citext)]
-                citext = ''
-
+                regular += list(ls.keys())[list(ls.values()).index(text)]
+                text = ''
     return regular
 
-message = input("Message: ") # <>={} []
-for i in message.upper():
-    if ("a" <= i <= "z") is True or ("A" <= i <= "Z") is True:
-        result_in_morse = encrypt(message.upper())
-        print("Original Message in Morse:", result_in_morse)
+x = input("Message: ")
+for i in x.upper():
+    if ("a" <= i <= "z") is True or ("A" <= i <= "Z") is True: #ha betű akkor morse koddá alakítja a szöveget
+        morse = encrypt(x.upper())
+        print("Original Message in Morse:", morse)
         break
-    else:
-        result_in_regular = decrypt(message)
-        print("Original Message in Regular:", result_in_regular)
+    else:  #ha morse kód akkor meg szöveggé
+        text = decrypt(x)
+        print("Original Message in Regular:",text)
         break
